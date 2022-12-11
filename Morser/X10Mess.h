@@ -12,8 +12,8 @@ public:
 	void addVibbleChar(uint8_t newchar);
 	void addVibbleNum(uint8_t newchar);
 	void addFooter();
-	void getX10ContentsPtr(uint8_t *& X10ContentsPtr);
+	void getX10ContentsPtr(char *& X10ContentsPtr);
 private:
-	vector<uint8_t> X10Contents_;
+	vector<char> X10Contents_;
 	uint8_t lastWrittenBitSet_;
 };

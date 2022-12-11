@@ -16,6 +16,25 @@ void ShowConsoleCursor(bool showFlag)
 
 int main() {
 	//testing addtwobits
+
+	/*
+	char * testchar;
+	char testbool;
+	char charlen;
+	for (int i = 0; i <= 128; ++i) {
+		testchar = (char*)CHAR_TO_MORSE_BIN[(int)i];
+		charlen = CHAR_LEN_IN_MORSE[i];
+		cout << endl << i << " " << (char)i;
+		if (testchar != NULL) {
+			cout << "  " << ((testchar != NULL) ? testchar : "NULL  ") << endl;
+			for (int j = 0; j < charlen; ++j) {
+				testbool = testchar[j];
+				//cout << testbool;
+			}
+		}
+	}
+	*/
+
 	Morser newMorseTest;
 		newMorseTest.myX10Mess_.addVibbleChar('a');
 		newMorseTest.myX10Mess_.addVibbleChar('-');
@@ -78,13 +97,18 @@ int main() {
 
 	//run the important functions
 	TestSender_.getMessageInMorse(messPtr);
-	uint8_t* TestSenderAllAttrPtr;
+	char* TestSenderAllAttrPtr;
+	TestSender_.getAllAttrPtr(TestSenderAllAttrPtr);
 	TestSender_.getAllAttrPtr(TestSenderAllAttrPtr);
 
 	//*** add some test for nullptr from certain functions...
 
 	menuCoord = { 0,8 };
 	cout << endl << endl << "Results of genAllAttr (X10 signal handed off to menuas a pointer to int8_t array): " << endl;
+	for (unsigned int i = 0; TestSenderAllAttrPtr[i] != 0; i++) {
+		cout << "           " << TestSenderAllAttrPtr[i];
+	}
+
 	for (unsigned int i = 0; TestSenderAllAttrPtr[i] != 0; i++) {
 		cout << "  0b" ;
 		for (uint8_t j = 0; j < 8; j++) {

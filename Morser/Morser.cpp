@@ -6,7 +6,7 @@
 using namespace std;
 
 Morser::Morser()
-	: messOrg_(""), onIntensity_(0), offIntensity_(0), speed_(0), allAttrUpToDate_(true)
+	: messOrg_(""), onIntensity_(0), offIntensity_(0), speed_(1), allAttrUpToDate_(true)
 {
 	//allAttr_.clear();
 	messVibbles_.clear();
@@ -29,7 +29,9 @@ void Morser::setSpeed(uint8_t newspeed) {
 	if (newspeed > 31) {
 		speed_ = 31;
 	}
-	else {
+	else if (newspeed < 1) {
+		speed_ = 1;
+	} else {
 		speed_ = newspeed;
 	}
 	allAttrUpToDate_ = false;
@@ -78,7 +80,7 @@ void Morser::setMessage(string newmessage) {
 			//should contain spaces, dots and commas, etc.
 }
 
-void Morser::getAllAttrPtr(uint8_t*& allAttrPtr) {
+void Morser::getAllAttrPtr(char*& allAttrPtr) {
 	//test for const - where do we make sure noone can write using the pointer they get (seems OK, but test)
 
 	if (allAttrUpToDate_ == false) {

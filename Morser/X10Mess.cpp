@@ -81,12 +81,9 @@ void X10Mess::addFooter()
 	}
 }
 
-void X10Mess::getX10ContentsPtr(uint8_t*& X10ContentsPtr) 
+void X10Mess::getX10ContentsPtr(char*& X10ContentsPtr) 
 {
 	//debug statements
-		uint8_t* test1 = X10Contents_.data();
-		uint8_t test2 = *test1;
-			//seem about right, gives 01 10 10 10...
 
 	X10ContentsPtr = X10Contents_.data();
 	return;

@@ -22,6 +22,8 @@ static const char* CHAR_TO_MORSE_BIN[128] = {
 	//Remember this is copied from online source, then changed
 	//Comment also on why they end in 0's, and why the space morse-char has the length it has
 	// Recognizes ".", ",", "?"
+
+	//redo with a=1, etc
 	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
@@ -69,7 +71,7 @@ public:
 		void getMessageInMorse(const uint8_t* &messPtrParam);
 		uint32_t GetMessageInMorseLength() const;
 
-		void getAllAttrPtr(uint8_t *& allAttrPtr);
+		void getAllAttrPtr(char *& allAttrPtr);
 			//old version - uint8_t* const getAllAttrPtr();
 
 		
