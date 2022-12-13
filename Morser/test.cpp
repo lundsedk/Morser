@@ -35,22 +35,6 @@ int main() {
 	}
 	*/
 
-	Morser newMorseTest;
-		newMorseTest.myX10Mess_.addVibbleChar('a');
-		newMorseTest.myX10Mess_.addVibbleChar('-');
-		newMorseTest.myX10Mess_.addVibbleChar('.');
-		newMorseTest.myX10Mess_.addVibbleNum(0b10000011);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(false);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(false);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-		newMorseTest.myX10Mess_.addTwoBits(true);
-
 		COORD menuCoord = { 0,0 };
 
 
@@ -96,7 +80,6 @@ int main() {
 	tempOffIntensity.insert(TestSender_.getOffIntensity_(), 255, ' ');
 
 	//run the important functions
-	TestSender_.getMessageInMorse(messPtr);
 	char* TestSenderAllAttrPtr;
 	TestSender_.getAllAttrPtr(TestSenderAllAttrPtr);
 	TestSender_.getAllAttrPtr(TestSenderAllAttrPtr);
@@ -104,10 +87,6 @@ int main() {
 	//*** add some test for nullptr from certain functions...
 
 	menuCoord = { 0,8 };
-	cout << endl << endl << "Results of genAllAttr (X10 signal handed off to menuas a pointer to int8_t array): " << endl;
-	for (unsigned int i = 0; TestSenderAllAttrPtr[i] != 0; i++) {
-		cout << "           " << TestSenderAllAttrPtr[i];
-	}
 
 	for (unsigned int i = 0; TestSenderAllAttrPtr[i] != 0; i++) {
 		cout << "  0b" ;
@@ -116,40 +95,23 @@ int main() {
 		}
 	}
 	cout << "  0b00000000";
+
+	cout << endl << endl << endl << "clear-test" <<endl;
+	TestSender_.setMessage("test");
+	TestSender_.getAllAttrPtr(TestSenderAllAttrPtr);
+
+				for (unsigned int i = 0; i<50; i++) {
+					cout << "  0b";
+					for (uint8_t j = 0; j < 8; j++) {
+						cout << ((TestSenderAllAttrPtr[i] & (0b10000000 >> j)) ? '1' : '0');
+					}
+				}
+				cout << "  0b00000000";
+
+
+
 	cout << endl << "Note that the first and last bytes are header and footer respectively (padded with 0s)." << endl << "The remaining bytes contain 10s or 01s, corresponding to 1 and 0 of the 3 settings, then the message," << endl;
 
-	//maybe also print the morseBin...
-
-	uint16_t loopSpeed = 8000 / TestSender_.getSpeed();
-
-	
-		// Speed is between 0 and 31 as max, default value is 0b00010000 = 16 = 1 second per dit
-		// so 31 is max speed - low milisec, and 1 is min speed, high milisec
-		// and 16 speed_ should give 1000 millisec
-			//	= (1000 / 16) * TestSender_.getSpeed()
-		//move comments to speed func - help use
-			//or, make a function that saves it or just converts it to milliseconds - future use
-	uint32_t messtest18 = TestSender_.GetMessageInMorseLength();
-	BBIndex<8> loopIndexEnd = { TestSender_.GetMessageInMorseLength() / 8, 0 };
-
-	menuCoord = { 0,15 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), menuCoord);
-	cout << "Results of morseBin (similar code will run on the PSoC):" << endl;
-	cout << "Length of bar is current intensity (pwm signal)";
-	menuCoord = { 0,18 };
-
-	do {
-		for (BBIndex<8> i = {0,0}; i < loopIndexEnd; i = i + BBIndex<8>(0, 1)) {
-			//redo above with proper increments
-			Sleep(loopSpeed);
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), menuCoord);
-			if ( (messPtr[i.ByteIndex] & (0b00000001 << i.BitIndex) ) != 0b00000000) {
-				cout << tempOnIntensity;
-			} else {
-				cout << tempOffIntensity;
-			}
-		}
-	} while (true);
 
 	return 0;
 }

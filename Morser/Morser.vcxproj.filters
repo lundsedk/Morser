@@ -29,9 +29,6 @@
     <ClInclude Include="Morser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BBIndex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="X10Mess.h">
       <Filter>Header Files</Filter>
     </ClInclude>

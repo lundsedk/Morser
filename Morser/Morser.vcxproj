@@ -133,7 +133,6 @@
     <ClCompile Include="X10Mess.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BBIndex.h" />
     <ClInclude Include="Morser.h" />
     <ClInclude Include="X10Mess.h" />
   </ItemGroup>
