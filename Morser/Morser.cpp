@@ -2,6 +2,7 @@
 #include <string>
 #include "Morser.h"
 #include <iostream>
+	///***nødvendigt?
 
 using namespace std;
 
